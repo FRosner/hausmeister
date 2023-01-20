@@ -1,0 +1,27 @@
+{
+  "name": "hausmeister",
+  "version": "1.0.0",
+  "description": "Archiving inactive Slack channels",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FRosner/hausmeister.git"
+  },
+  "keywords": [
+    "slack",
+    "automation"
+  ],
+  "author": "Frank Rosner",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/FRosner/hausmeister/issues"
+  },
+  "homepage": "https://github.com/FRosner/hausmeister#readme",
+  "dependencies": {
+    "@slack/bolt": "^3.12.2",
+    "parse-duration": "^1.0.2"
+  }
+}
