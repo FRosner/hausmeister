@@ -15,12 +15,12 @@ console.log(`Archiving channels matching ${channelRegex} with no activity for ${
 const now = Date.now();
 
 (async () => {
-    const result = await app.client.conversations.list();
+    const result = await app.client.conversations.list({exclude_archived: true});
     const channels = result.channels;
     const matchingChannels = channels.filter(c => c.name.match(channelRegex) != null);
     await Promise.all(matchingChannels.map(async (c) => {
         const channelName = `${c.name} (${c.id})`;
-        if (c.is_channel && !c.is_archived) {
+        if (c.is_channel) {
             if (!c.is_member) {
                 console.log(`Joining channel ${channelName}`);
                 await app.client.conversations.join({channel: c.id});
