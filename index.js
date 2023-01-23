@@ -15,9 +15,17 @@ console.log(`Archiving channels matching ${channelRegex} with no activity for ${
 const now = Date.now();
 
 (async () => {
-    const result = await app.client.conversations.list({exclude_archived: true});
-    const channels = result.channels;
+    const channels = [];
+    const listOptions = {exclude_archived: true, types: "public_channel", limit: 200}
+    let result = await app.client.conversations.list(listOptions);
+    result.channels.forEach(c => channels.push(c));
+    while (result.response_metadata.next_cursor) {
+        console.log(`Fetched ${channels.length} channels so far, but there are more to fetch.`)
+        result = await app.client.conversations.list({...listOptions, cursor: result.response_metadata.next_cursor});
+        result.channels.forEach(c => channels.push(c));
+    }
     const matchingChannels = channels.filter(c => c.name.match(channelRegex) != null);
+    console.log(`Found ${matchingChannels.length} matching channels.`);
     await Promise.all(matchingChannels.map(async (c) => {
         const channelName = `${c.name} (${c.id})`;
         if (c.is_channel) {
