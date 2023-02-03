@@ -2,7 +2,7 @@
 
 ## Description
 
-Slack app to automatically archive Slack channels.
+Slack app to automatically archive Slack channels. For more context, see the [blog post](https://dev.to/frosnerd/hausmeister-automating-slack-channel-archiving-using-github-actions-3e5h).
 
 ## Usage
 
