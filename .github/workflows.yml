@@ -3,7 +3,7 @@ name: Run
 on:
   schedule:
   - cron: "00 12 1 * *"
-  workflow_dispatch:
+  workflow_dispatch: on.workflow_dispatch
 
 jobs:
   run:
@@ -19,8 +19,8 @@ jobs:
       node-version: 18
     - run: npm ci
     - env:
-      HM_SLACK_BEARER_TOKEN: ${{ secrets.xoxb-315398689718-6675671653126-Dspfr9dc7pD5HCIvWtpEWbDl }}
-      HM_SLACK_SIGNING_SECRET: ${{ secrets.4b84bbcdc2d55d00af2f7a752ca4e8ba }}
+      HM_SLACK_BEARER_TOKEN: "xoxb-315398689718-6675671653126-Dspfr9dc7pD5HCIvWtpEWbDl"
+      HM_SLACK_SIGNING_SECRET: "4b84bbcdc2d55d00af2f7a752ca4e8ba"
       HM_CHANNEL_REGEX: "^temp[-_].*"
       HM_LAST_MESSAGE_MAX_AGE: "30d"
       HM_ARCHIVE_CHANNELS: "false"
